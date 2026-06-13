@@ -24,6 +24,8 @@ public record InversionRequest(
         String asesor,
         String estado,
         Boolean activo,
-        @Valid List<PasoDTO> pasos
+        @Valid List<PasoDTO> pasos,
+        List<String> imagenesAntes,
+        List<String> imagenesDespues
 ) {
 }

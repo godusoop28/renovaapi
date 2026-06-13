@@ -1,6 +1,7 @@
 package com.renova.renova.config;
 
 import com.renova.renova.model.EstadoPaso;
+import com.renova.renova.model.EtapasInversion;
 import com.renova.renova.model.Inversion;
 import com.renova.renova.model.PasoInversion;
 import com.renova.renova.repository.InversionRepository;
@@ -37,34 +38,34 @@ public class DataSeeder implements CommandLineRunner {
                 .fechaInicio(LocalDate.of(2026, Month.APRIL, 15))
                 .fechaCierreEstimada(LocalDate.of(2026, Month.JULY, 30))
                 .asesor("Equipo Renova Norte")
-                .estado("En proceso legal")
+                .estado("COMPRADOR CONFIRMADO")
                 .activo(true)
                 .build();
 
         inversion.getPasos().add(PasoInversion.builder()
-                .numero(1).titulo("Evaluación de propiedad")
-                .descripcion("Se realizó la visita y avalúo de la propiedad.")
+                .numero(1).titulo(EtapasInversion.ETAPAS.get(0).titulo())
+                .descripcion(EtapasInversion.ETAPAS.get(0).descripcion())
                 .fecha("10 de Abril de 2026").estado(EstadoPaso.COMPLETADO).inversion(inversion).build());
         inversion.getPasos().add(PasoInversion.builder()
-                .numero(2).titulo("Oferta presentada y aceptada")
-                .descripcion("El vendedor aceptó los términos de la oferta.")
-                .fecha("20 de Abril de 2026").estado(EstadoPaso.COMPLETADO).inversion(inversion).build());
-        inversion.getPasos().add(PasoInversion.builder()
-                .numero(3).titulo("Firma de convenio")
-                .descripcion("Se firmó el convenio de compra-venta ante notario.")
-                .fecha("28 de Abril de 2026").estado(EstadoPaso.COMPLETADO).inversion(inversion).build());
-        inversion.getPasos().add(PasoInversion.builder()
-                .numero(4).titulo("Proceso legal y notarial")
-                .descripcion("Revisión de escrituras, liberación de adeudos y trámites notariales en curso.")
+                .numero(2).titulo(EtapasInversion.ETAPAS.get(1).titulo())
+                .descripcion(EtapasInversion.ETAPAS.get(1).descripcion())
                 .fecha("Est. 30 de Junio de 2026").estado(EstadoPaso.EN_CURSO).inversion(inversion).build());
         inversion.getPasos().add(PasoInversion.builder()
-                .numero(5).titulo("Escrituración y cierre")
-                .descripcion("Firma final ante notario y registro de la propiedad.")
+                .numero(3).titulo(EtapasInversion.ETAPAS.get(2).titulo())
+                .descripcion(EtapasInversion.ETAPAS.get(2).descripcion())
+                .fecha("Est. 20 de Julio de 2026").estado(EstadoPaso.PENDIENTE).inversion(inversion).build());
+        inversion.getPasos().add(PasoInversion.builder()
+                .numero(4).titulo(EtapasInversion.ETAPAS.get(3).titulo())
+                .descripcion(EtapasInversion.ETAPAS.get(3).descripcion())
                 .fecha("Est. 30 de Julio de 2026").estado(EstadoPaso.PENDIENTE).inversion(inversion).build());
         inversion.getPasos().add(PasoInversion.builder()
-                .numero(6).titulo("Liquidación de rendimientos")
-                .descripcion("Distribución de rendimientos al inversionista.")
+                .numero(5).titulo(EtapasInversion.ETAPAS.get(4).titulo())
+                .descripcion(EtapasInversion.ETAPAS.get(4).descripcion())
                 .fecha("Est. 15 de Agosto de 2026").estado(EstadoPaso.PENDIENTE).inversion(inversion).build());
+        inversion.getPasos().add(PasoInversion.builder()
+                .numero(6).titulo(EtapasInversion.ETAPAS.get(5).titulo())
+                .descripcion(EtapasInversion.ETAPAS.get(5).descripcion())
+                .fecha("Est. 30 de Agosto de 2026").estado(EstadoPaso.PENDIENTE).inversion(inversion).build());
 
         inversionRepository.save(inversion);
     }

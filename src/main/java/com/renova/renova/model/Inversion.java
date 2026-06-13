@@ -67,6 +67,22 @@ public class Inversion {
     @JsonManagedReference
     private List<PasoInversion> pasos = new ArrayList<>();
 
+    /** URLs de fotos "antes" de la remodelacion (maximo 4). */
+    @Builder.Default
+    @ElementCollection
+    @CollectionTable(name = "inversion_imagenes_antes", joinColumns = @JoinColumn(name = "inversion_id"))
+    @OrderColumn(name = "orden")
+    @Column(name = "url", length = 500)
+    private List<String> imagenesAntes = new ArrayList<>();
+
+    /** URLs de fotos "despues" de la remodelacion (maximo 4). */
+    @Builder.Default
+    @ElementCollection
+    @CollectionTable(name = "inversion_imagenes_despues", joinColumns = @JoinColumn(name = "inversion_id"))
+    @OrderColumn(name = "orden")
+    @Column(name = "url", length = 500)
+    private List<String> imagenesDespues = new ArrayList<>();
+
     @Column(nullable = false, updatable = false)
     private Instant creadoEn;
 

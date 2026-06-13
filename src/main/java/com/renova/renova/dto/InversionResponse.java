@@ -26,6 +26,8 @@ public record InversionResponse(
         boolean activo,
         Integer progreso,
         List<PasoDTO> pasos,
+        List<String> imagenesAntes,
+        List<String> imagenesDespues,
         Instant creadoEn,
         Instant actualizadoEn
 ) {
@@ -57,6 +59,8 @@ public record InversionResponse(
                 inversion.isActivo(),
                 progreso,
                 pasos,
+                inversion.getImagenesAntes(),
+                inversion.getImagenesDespues(),
                 inversion.getCreadoEn(),
                 inversion.getActualizadoEn()
         );

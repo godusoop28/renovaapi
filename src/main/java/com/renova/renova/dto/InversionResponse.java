@@ -36,6 +36,14 @@ public record InversionResponse(
                 .map(p -> new PasoDTO(p.getId(), p.getNumero(), p.getTitulo(), p.getDescripcion(), p.getFecha(), p.getEstado()))
                 .toList();
 
+        List<String> imagenesAntes = inversion.getImagenesAntes() == null
+                ? List.of()
+                : List.copyOf(inversion.getImagenesAntes());
+
+        List<String> imagenesDespues = inversion.getImagenesDespues() == null
+                ? List.of()
+                : List.copyOf(inversion.getImagenesDespues());
+
         int progreso = 0;
         if (!pasos.isEmpty()) {
             long completados = pasos.stream()
@@ -59,8 +67,8 @@ public record InversionResponse(
                 inversion.isActivo(),
                 progreso,
                 pasos,
-                inversion.getImagenesAntes(),
-                inversion.getImagenesDespues(),
+                imagenesAntes,
+                imagenesDespues,
                 inversion.getCreadoEn(),
                 inversion.getActualizadoEn()
         );
